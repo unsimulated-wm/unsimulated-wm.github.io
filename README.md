@@ -1,0 +1,1 @@
+Workshop website of "Simulated vs. unsimulated world models" @ ELLIS 2026

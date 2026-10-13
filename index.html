@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulated vs. Unsimulated World Models | ELLIS UnConference 2026</title>
+<meta name="description" content="A session at the ELLIS UnConference 2026 in Paris contrasting the brain's implicit, unsimulated world model with explicit simulated world models in AI.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23006c66'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='14' fill='white' text-anchor='middle'%3EWM%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://unsimulated-wm.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--text:#292929;--muted:#666;--accent:#006c66;--border:#e4e4e4;--header:rgba(255,255,255,.97);--panel:#9d007e;--width:860px;color-scheme:light}
+html[data-theme="dark"]{--bg:#1d1f21;--text:#eeeeec;--muted:#b0b4b4;--accent:#74d3ca;--border:#404547;--header:rgba(29,31,33,.97);--panel:#d65bbd;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Lato,"Helvetica Neue",Arial,sans-serif;padding-bottom:env(safe-area-inset-bottom,0px)}
+::selection{background:#bcebe4;color:#172c29}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+section,#about{scroll-margin-top:80px}
+p{margin:0 0 1rem}
+.skip{position:fixed;left:12px;top:-60px;z-index:5;padding:8px 12px;background:var(--bg)}
+.skip:focus{top:8px}
+
+.site-header{position:sticky;top:0;z-index:3;background:var(--header);border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top,0px)}
+.nav{max-width:var(--width);min-height:56px;padding:0 20px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.nav .home{color:var(--text);font-size:15px}
+.nav .home:hover{color:var(--accent)}
+.links{display:flex;align-items:center;gap:26px;font-size:15px}
+.links a{color:var(--muted)}
+.links a:hover{color:var(--accent);text-decoration:none}
+.toggle{border:0;padding:6px 0 6px 4px;display:flex;color:var(--muted);background:none;cursor:pointer}
+.toggle:hover{color:var(--accent)}
+.toggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.page{width:min(var(--width),calc(100% - 40px));margin:0 auto;padding:52px 0 30px}
+h1{margin:0 0 6px;font-size:clamp(32px,5vw,44px);line-height:1.2;font-weight:300;letter-spacing:-.015em}
+h1 strong{font-weight:700}
+.subtitle{margin:0 0 30px;color:var(--muted);font-size:17px}
+section{margin-top:46px}
+h2{margin:0 0 16px;font-size:29px;font-weight:300;line-height:1.3;letter-spacing:-.01em}
+h3{margin:0;font-size:17px;font-weight:700;line-height:1.4}
+
+.facts{display:grid;gap:8px;margin:0 0 28px}
+.fact{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline}
+.fact span{color:var(--muted);font-size:15px}
+.fact p{margin:0}
+
+.focus{padding-left:22px;margin:0 0 18px}
+.focus li{padding-left:3px;margin:0 0 9px}
+.note{color:var(--muted);font-size:15px}
+
+.tl-scroll{overflow-x:auto;margin:20px 0 14px;padding-bottom:4px}
+.tl-scroll:focus-visible{outline:2px solid var(--muted);outline-offset:4px}
+.tl{position:relative;min-width:760px}
+.tl::before{content:"";position:absolute;left:0;right:0;top:30px;height:1px;background:var(--muted)}
+.tl ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.tl li{position:relative;padding:46px 10px 0 0;display:flex}
+.tl li:last-child{padding-right:0}
+.tl li::before,.tl::after{content:"";position:absolute;top:24px;width:1px;height:13px;background:var(--muted)}
+.tl li::before{left:0}
+.tl::after{right:0}
+.tl .t,.t-end{position:absolute;top:0;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;line-height:1.2}
+.tl .t{left:0}
+.t-end{right:0}
+.session{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;width:100%;padding:12px 14px 13px;border:1px solid var(--border);border-radius:3px;background:var(--bg);cursor:pointer;line-height:1.45}
+.session:hover{border-color:var(--muted);background:color-mix(in srgb,var(--text) 3%,var(--bg))}
+.session:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+.session .kind{font-size:13px;color:var(--muted)}
+.session .st{font-weight:700;font-size:16px}
+.session .sp{font-size:15px}
+.session .tt{font-size:14px;color:var(--muted);font-style:italic}
+.session .more{margin-top:auto;padding-top:10px;font-size:13px;color:var(--text);text-decoration:underline;text-underline-offset:.2em}
+dialog#abs{width:min(620px,calc(100% - 32px));max-height:calc(100vh - 48px);padding:0;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);box-shadow:0 18px 50px rgba(0,0,0,.25)}
+dialog#abs::backdrop{background:rgba(20,22,24,.5)}
+.d-inner{padding:26px 28px 24px;position:relative}
+.d-close{position:absolute;top:16px;right:18px;border:1px solid var(--border);border-radius:3px;background:none;color:var(--text);font:inherit;font-size:13px;padding:2px 10px;cursor:pointer}
+.d-close:hover{border-color:var(--muted);background:color-mix(in srgb,var(--text) 5%,var(--bg))}
+.d-meta{margin:0 0 10px;color:var(--muted);font-size:15px;display:flex;gap:10px;align-items:center}
+.d-body h3{font-size:22px;font-weight:700;margin:0 0 6px;padding-right:70px}
+.d-body p{margin:0 0 6px}
+.d-title{color:var(--muted);font-style:italic}
+.d-abs{margin:14px 0 0;padding:12px 15px;border-left:2px solid var(--border);background:color-mix(in srgb,var(--text) 3%,var(--bg));font-size:16px;line-height:1.6}
+.d-abs p{margin:0}
+.d-list{margin:16px 0 0;padding-left:20px;font-size:16px}
+.d-list li{margin:0 0 6px}
+
+.people{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:9px}
+.person{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:baseline}
+.person .aff{color:var(--muted);font-size:15px}
+.person .aff em{font-style:normal;color:var(--text)}
+.label{margin:30px 0 14px;font-size:17px;font-weight:700}
+.spk{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.portrait{position:relative;aspect-ratio:4/5;width:110px;margin:0 0 12px;border-radius:4px;background:color-mix(in srgb,var(--text) 6%,var(--bg));display:grid;place-items:center;font-size:26px;font-weight:300;letter-spacing:.02em;color:var(--muted);overflow:hidden}
+.portrait img{position:absolute;inset:0;font-size:12px;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.spk p,.pnl p{margin:0}
+.nm{font-size:19px;font-weight:700;line-height:1.3}
+.af{color:var(--muted);font-size:15px;line-height:1.4;margin-top:2px!important}
+.tp{margin-top:10px!important;font-size:16px;line-height:1.4}
+.tp span{display:block;color:var(--muted);font-size:14px}
+.linkbtn{justify-self:start;text-align:left;margin-top:8px;padding:0;border:0;background:none;font:inherit;font-size:14px;color:var(--text);text-decoration:underline;text-underline-offset:.2em;cursor:pointer}
+.linkbtn:hover{color:var(--muted)}
+.orgs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px}
+.orgs li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:0 16px;align-items:start}
+.orgs p{margin:0}
+.portrait.sm{width:72px;margin:0;font-size:18px}
+.orgs .nm{font-size:17px}
+.rl{margin-top:4px!important;font-size:15px;font-style:italic}
+.pnl{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
+.pnl li{border-top:1px solid var(--border);padding:16px 0 20px}
+.pv{margin-top:8px!important;font-size:15px;font-style:italic}
+.bio{margin-top:6px!important;font-size:15.5px;line-height:1.55;color:var(--text)}
+
+.site-footer{margin-top:50px;background:#35383a;color:#d5d7d7;font-size:13px}
+.foot{max-width:var(--width);margin:auto;padding:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 16px}
+.site-footer a{color:#f2f2f2}
+
+@media (max-width:650px){
+  .nav{padding:12px 20px;min-height:0;align-items:flex-start;flex-wrap:wrap}
+  .links{flex-wrap:wrap;gap:8px 16px}
+  .page{padding-top:34px}
+  section{margin-top:38px}
+}
+@media (max-width:500px){
+  .fact,.person{grid-template-columns:1fr;gap:0}
+  .spk{grid-template-columns:1fr;gap:26px}
+  .spk li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:0 16px;align-items:start}
+  .spk .portrait{width:72px;grid-row:span 5;margin:0;font-size:20px}
+  .pnl{grid-template-columns:1fr}
+  .orgs{grid-template-columns:1fr}
+}
+@media (max-width:650px){
+  .tl-scroll{overflow:visible;margin-bottom:26px}
+  .tl{min-width:0}
+  .tl::before{left:52px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .tl ol{grid-template-columns:1fr;grid-auto-rows:1fr}
+  .tl li{padding:0 0 10px 70px}
+  .tl li:last-child{padding-bottom:0}
+  .tl li::before,.tl::after{width:13px;height:1px;left:46px}
+  .tl li::before{top:0}
+  .tl::after{top:auto;bottom:0;right:auto}
+  .tl .t{top:-.6em;left:0}
+  .t-end{top:auto;bottom:-.6em;left:0;right:auto}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="home" href="https://ellis-unconference.github.io/">ELLIS UnConference 2026</a>
+    <div class="links">
+      <a href="#intro">About</a><a href="#programme">Programme</a><a href="#speakers">Speakers</a><a href="#organizers">Organizers</a>
+      <button class="toggle" type="button" aria-label="Switch color theme" title="Toggle color theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg></button>
+    </div>
+  </nav>
+</header>
+
+<main id="main" class="page">
+  <header id="about">
+    <h1><strong>Simulated vs. Unsimulated</strong> World Models</h1>
+    <p class="subtitle" style="margin-bottom:24px">A session at the <a href="https://ellis-unconference.github.io/">ELLIS UnConference 2026</a> in Paris</p>
+  </header>
+
+  <div class="facts">
+    <div class="fact"><span>When</span><p>Tuesday 8 December 2026, 14:00–16:00</p></div>
+    <div class="fact"><span>Where</span><p>Palais des Congrès de Paris, 2 Place de la Porte Maillot, 75017 Paris (room to be announced)</p></div>
+    <div class="fact"><span>Format</span><p>Three invited talks and a panel discussion</p></div>
+    <div class="fact"><span>Registration</span><p><a href="https://ellisunconference2026.dakini-pco.com">Register through the ELLIS UnConference</a></p></div>
+  </div>
+
+  <section id="intro" style="margin-top:0">
+  <h2>About the session</h2>
+  <p>World models have become a cornerstone of AI because they generalize beyond experience and simulate physical events, giving agents internal predictions to plan and reason with. Brains predict too, propagating information forward through space and time and continually updating through prediction errors that flow backwards. Yet the two kinds of world model are defined, tested and extended very differently.</p>
+  <p>This session contrasts explicit generative simulation in AI, the <em>in-silico, simulated world</em>, with the brain’s implicit predictive representations, the <em>in-vivo, unsimulated world</em>. We bring together researchers from <strong>machine learning</strong>, <strong>cognitive science</strong> and <strong>neuroscience</strong> to derive testable hypotheses about how world models work, and to develop computational approaches for generating and evaluating them, with an eye on new inductive biases for machine learning.</p>
+  <p>The session builds on our review <em>“Brain’s world model is smarter than we think”</em>, Current Opinion in Behavioral Sciences (2026).</p>
+  </section>
+
+  <section id="focus">
+    <h2>Key questions</h2>
+    <ul class="focus">
+      <li><strong>Simulated vs. unsimulated worlds:</strong> comparing explicit simulators with implicit predictive representations at the level of representational geometry, algorithm, and prediction and behavior. Where do JEPAs and multimodal foundation models fall short of the brain?</li>
+      <li><strong>Metacognitive simulation:</strong> planning involves not only simulating futures but judging whether the current model still holds. A metacognitive agent can learn which predictive model to use, trust and revise.</li>
+      <li><strong>Prediction without explicit models:</strong> model-free agents navigate without representing environmental structure, value functions project the world onto goal space, and large language models infer latent structure they were never shown.</li>
+      <li><strong>Memory and stochasticity:</strong> grid, place, border and corner cells support topology-aware prediction that may transfer across environments, while distributional dopamine codes capture real-world uncertainty.</li>
+      <li><strong>Social world models:</strong> we model other minds as well as the physical world, yet world models from a social-learning perspective remain largely unexplored.</li>
+    </ul>
+  </section>
+
+  <section id="programme">
+    <h2>Programme</h2>
+    <p class="note">Tuesday 8 December 2026, Paris time. Select a session to read its abstract.</p>
+    <div class="tl-scroll" tabindex="0" aria-label="Programme timeline">
+      <div class="tl">
+        <ol>
+          <li><time class="t" datetime="2026-12-08T14:00">14:00</time>
+            <button class="session" type="button" data-id="grewe" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Predictive world models</span><span class="sp"><strong>Benjamin Grewe</strong>, ETH Zürich</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
+          <li><time class="t" datetime="2026-12-08T14:30">14:30</time>
+            <button class="session" type="button" data-id="whittington" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Metacognitive world models</span><span class="sp"><strong>James Whittington</strong>, University of Oxford</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
+          <li><time class="t" datetime="2026-12-08T15:00">15:00</time>
+            <button class="session" type="button" data-id="jaques" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Social world models</span><span class="sp"><strong>Natasha Jaques</strong>, University of Washington and Google DeepMind</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
+          <li><time class="t" datetime="2026-12-08T15:30">15:30</time>
+            <button class="session" type="button" data-id="panel" aria-haspopup="dialog"><span class="kind">Panel discussion</span><span class="st">Unsimulated world models</span><span class="sp">Four panelists with the three invited speakers</span><span class="more">See panelists</span></button></li>
+        </ol>
+        <time class="t-end" datetime="2026-12-08T16:00">16:00</time>
+      </div>
+    </div>
+    <p class="note">Times are tentative.</p>
+
+    <template id="abs-grewe"><p class="d-meta">Invited talk, 14:00–14:30</p><h3>Predictive world models</h3><p><strong>Benjamin Grewe</strong>, ETH Zürich, Switzerland</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
+    <template id="abs-whittington"><p class="d-meta">Invited talk, 14:30–15:00</p><h3>Metacognitive world models</h3><p><strong>James Whittington</strong>, University of Oxford, UK</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
+    <template id="abs-jaques"><p class="d-meta">Invited talk, 15:00–15:30</p><h3>Social world models</h3><p><strong>Natasha Jaques</strong>, University of Washington, USA, and Google DeepMind</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
+    <template id="abs-panel"><p class="d-meta">Panel discussion, 15:30–16:00</p><h3>Unsimulated world models</h3><div class="d-abs"><p>An open discussion on what current world models are missing, joined by the three invited speakers.</p></div><ul class="d-list"><li><strong>Demian Battaglia</strong>, CNRS and University of Strasbourg. Structure and dynamics</li><li><strong>Jeehyun Kwag</strong>, Seoul National University. Spatial navigation and memory</li><li><strong>Mattia Rigotti</strong>, IBM Research Zurich. Reasoning and LLMs</li><li><strong>Juan Helen Zhou</strong>, National University of Singapore. Brain foundation models</li></ul></template>
+  </section>
+
+  <section id="speakers">
+    <h2>Speakers and panelists</h2>
+    <h3 class="label">Invited speakers</h3>
+    <ul class="spk">
+      <li><div class="portrait">BG<img onerror="this.remove()" src="img/grewe.jpg" alt="Portrait of Benjamin Grewe" width="110" height="138" loading="lazy"></div>
+        <p class="nm">Benjamin Grewe</p><p class="af">ETH Zürich, Switzerland</p>
+        <p class="tp">Predictive world models<span>Talk at 14:00</span></p>
+        <button class="linkbtn" type="button" data-id="grewe" aria-haspopup="dialog">Read abstract</button></li>
+      <li><div class="portrait">JW<img onerror="this.remove()" src="img/whittington.jpg" alt="Portrait of James Whittington" width="110" height="138" loading="lazy"></div>
+        <p class="nm">James Whittington</p><p class="af">University of Oxford, UK</p>
+        <p class="tp">Metacognitive world models<span>Talk at 14:30</span></p>
+        <button class="linkbtn" type="button" data-id="whittington" aria-haspopup="dialog">Read abstract</button></li>
+      <li><div class="portrait">NJ<img onerror="this.remove()" src="img/jaques.jpg" alt="Portrait of Natasha Jaques" width="110" height="138" loading="lazy"></div>
+        <p class="nm">Natasha Jaques</p><p class="af">University of Washington, USA, and Google DeepMind</p>
+        <p class="tp">Social world models<span>Talk at 15:00</span></p>
+        <button class="linkbtn" type="button" data-id="jaques" aria-haspopup="dialog">Read abstract</button></li>
+    </ul>
+    <h3 class="label">Panelists</h3>
+    <p class="note">The panel at 15:30 brings together four perspectives, joined by the three invited speakers.</p>
+    <ul class="pnl">
+      <li><p class="nm">Demian Battaglia</p><p class="af">CNRS and University of Strasbourg, France</p><p class="pv">Structure and dynamics</p>
+        <p class="bio">Works at the crossroads of neuroscience, physics and information sciences, studying brain network dynamics from micro-circuits up to the whole brain.</p></li>
+      <li><p class="nm">Jeehyun Kwag</p><p class="af">Seoul National University, Korea</p><p class="pv">Spatial navigation and memory</p>
+        <p class="bio">Systems and computational neuroscientist studying how neural circuits construct predictive world models through ensemble dynamics, memory engrams and egocentric spatial representations.</p></li>
+      <li><p class="nm">Mattia Rigotti</p><p class="af">IBM Research Zurich, Switzerland</p><p class="pv">Reasoning and LLMs</p>
+        <p class="bio">Works at the interface of computational neuroscience and machine learning; known for work on mixed selectivity and high-dimensional neural representations underlying flexible cognition.</p></li>
+      <li><p class="nm">Juan Helen Zhou</p><p class="af">National University of Singapore</p><p class="pv">Brain foundation models</p>
+        <p class="bio">Combines multimodal neuroimaging with deep generative models and large-scale brain foundation models, including Brain-JEPA and BrainHarmonix.</p></li>
+    </ul>
+  </section>
+
+  <section id="organizers">
+    <h2>Organizers</h2>
+    <ul class="orgs">
+      <li><div class="portrait sm">SL<img onerror="this.remove()" src="img/sangwan-lee.jpg" alt="Portrait of Sang Wan Lee" width="72" height="90" loading="lazy"></div><div><p class="nm">Sang Wan Lee</p><p class="af">KAIST, Korea</p><p class="rl">Workshop chair</p></div></li>
+      <li><div class="portrait sm">MR<img onerror="this.remove()" src="img/rigotti.jpg" alt="Portrait of Mattia Rigotti" width="72" height="90" loading="lazy"></div><div><p class="nm">Mattia Rigotti</p><p class="af">IBM Research Zurich, Switzerland</p><p class="rl">Speakers and panel</p></div></li>
+      <li><div class="portrait sm">SL<img onerror="this.remove()" src="img/seongwhan-lee.jpg" alt="Portrait of Seong-Whan Lee" width="72" height="90" loading="lazy"></div><div><p class="nm">Seong-Whan Lee</p><p class="af">Korea University, Korea</p><p class="rl">Financial support for the invited speakers</p></div></li>
+      <li><div class="portrait sm">JZ<img onerror="this.remove()" src="img/zhou.jpg" alt="Portrait of Juan Helen Zhou" width="72" height="90" loading="lazy"></div><div><p class="nm">Juan Helen Zhou</p><p class="af">National University of Singapore</p></div></li>
+      <li><div class="portrait sm">JK<img onerror="this.remove()" src="img/kwag.jpg" alt="Portrait of Jeehyun Kwag" width="72" height="90" loading="lazy"></div><div><p class="nm">Jeehyun Kwag</p><p class="af">Seoul National University, Korea</p></div></li>
+      <li><div class="portrait sm">DB<img onerror="this.remove()" src="img/battaglia.jpg" alt="Portrait of Demian Battaglia" width="72" height="90" loading="lazy"></div><div><p class="nm">Demian Battaglia</p><p class="af">CNRS and University of Strasbourg, France</p></div></li>
+    </ul>
+    <p class="note" style="margin-top:22px">Coordinated by Niklas Koeppe, Jiewon Kang and Myounghoon Ha (KAIST).</p>
+  </section>
+</main>
+
+<dialog id="abs" aria-label="Session details"><div class="d-inner"><button class="d-close" type="button" aria-label="Close">Close</button><div class="d-body"></div></div></dialog>
+
+<footer class="site-footer">
+  <div class="foot">
+    <span>Simulated vs. Unsimulated World Models, ELLIS UnConference 2026, Paris</span>
+    <a href="https://ellis-unconference.github.io/">Back to the ELLIS UnConference</a>
+  </div>
+</footer>
+<script>
+(()=>{const r=document.documentElement,b=document.querySelector('.toggle');let t=null;try{t=localStorage.getItem('theme')}catch(e){}
+if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;
+b.addEventListener('click',()=>{t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('theme',t)}catch(e){}});})();
+(()=>{const d=document.getElementById('abs'),b=d.querySelector('.d-body');let last=null;
+document.querySelectorAll('.session,.linkbtn').forEach(x=>x.addEventListener('click',()=>{const t=document.getElementById('abs-'+x.dataset.id);if(!t)return;b.replaceChildren(t.content.cloneNode(true));last=x;d.showModal()}));
+d.querySelector('.d-close').addEventListener('click',()=>d.close());
+d.addEventListener('click',e=>{if(e.target===d)d.close()});
+d.addEventListener('close',()=>{last&&last.focus()});})();
+</script>
+</body>
+</html>
