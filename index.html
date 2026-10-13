@@ -109,12 +109,16 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
 .portrait.sm{width:72px;margin:0;font-size:18px}
 .orgs .nm{font-size:17px}
 .rl{margin-top:4px!important;font-size:15px;font-style:italic}
-.pnl{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 24px}
+.pnl{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 24px}
 .pnl .portrait.sm{margin:0 0 10px}
 .pnl .nm{font-size:16px}
 .pnl .af{font-size:14px}
 .pv{margin-top:4px!important;font-size:14px;font-style:italic}
 
+.sponsor{margin-top:56px;padding-top:22px;border-top:1px solid var(--border);display:flex;gap:22px;align-items:center}
+.sponsor img{height:80px;width:auto;flex:none}
+.sponsor p{margin:0;font-size:14px;line-height:1.55;color:var(--muted)}
+html[data-theme="dark"] .sponsor img{border-radius:4px}
 .site-footer{margin-top:50px;background:#35383a;color:#d5d7d7;font-size:13px}
 .foot{max-width:var(--width);margin:auto;padding:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 16px}
 .site-footer a{color:#f2f2f2}
@@ -132,6 +136,7 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
   .spk .portrait{width:72px;grid-row:span 5;margin:0;font-size:20px}
   .pnl{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px}
   .orgs{grid-template-columns:1fr}
+  .sponsor{flex-direction:column;align-items:flex-start;gap:12px}
 }
 @media (max-width:650px){
   .tl-scroll{overflow:visible;margin-bottom:26px}
@@ -178,7 +183,7 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
   <h2>About the session</h2>
   <p>World models have become a cornerstone of AI because they generalize beyond experience and simulate physical events, giving agents internal predictions to plan and reason with. Brains predict too, propagating information forward through space and time and continually updating through prediction errors that flow backwards. Yet the two kinds of world model are defined, tested and extended very differently.</p>
   <p>This session contrasts explicit generative simulation in AI, the <em>in-silico, simulated world</em>, with the brain’s implicit predictive representations, the <em>in-vivo, unsimulated world</em>. We bring together researchers from <strong>machine learning</strong>, <strong>cognitive science</strong> and <strong>neuroscience</strong> to derive testable hypotheses about how world models work, and to develop computational approaches for generating and evaluating them, with an eye on new inductive biases for machine learning.</p>
-  <p>The session builds on our review <em>“Brain’s world model is smarter than we think”</em>, Current Opinion in Behavioral Sciences (2026).</p>
+  <p>The session builds on our review <a href="https://www.sciencedirect.com/science/article/pii/S2352154626000380" target="_blank" rel="noopener"><em>“Brain’s world model is smarter than we think”</em></a>, Current Opinion in Behavioral Sciences (2026).</p>
   </section>
 
   <section id="focus">
@@ -188,7 +193,7 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
       <li><strong>Metacognitive simulation:</strong> planning involves not only simulating futures but judging whether the current model still holds. A metacognitive agent can learn which predictive model to use, trust and revise.</li>
       <li><strong>Prediction without explicit models:</strong> model-free agents navigate without representing environmental structure, value functions project the world onto goal space, and large language models infer latent structure they were never shown.</li>
       <li><strong>Memory and stochasticity:</strong> grid, place, border and corner cells support topology-aware prediction that may transfer across environments, while distributional dopamine codes capture real-world uncertainty.</li>
-      <li><strong>Social world models:</strong> we model other minds as well as the physical world, yet world models from a social-learning perspective remain largely unexplored.</li>
+      <li><strong>Brain foundation models:</strong> large models pretrained on brain imaging, such as Brain-JEPA, predict masked brain activity in latent space instead of reconstructing the signal. Can they reveal the brain’s own world model?</li>
     </ul>
   </section>
 
@@ -201,11 +206,11 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
           <li><time class="t" datetime="2026-12-08T14:00">14:00</time>
             <button class="session" type="button" data-id="grewe" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Predictive world models</span><span class="sp"><strong>Benjamin Grewe</strong>, ETH Zürich</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
           <li><time class="t" datetime="2026-12-08T14:30">14:30</time>
-            <button class="session" type="button" data-id="whittington" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Metacognitive world models</span><span class="sp"><strong>James Whittington</strong>, University of Oxford</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
+            <button class="session" type="button" data-id="demartino" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Metacognitive world models</span><span class="sp"><strong>Benedetto De Martino</strong>, University College London</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
           <li><time class="t" datetime="2026-12-08T15:00">15:00</time>
-            <button class="session" type="button" data-id="jaques" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Social world models</span><span class="sp"><strong>Natasha Jaques</strong>, University of Washington and Google DeepMind</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
+            <button class="session" type="button" data-id="zhou" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Brain foundation models</span><span class="sp"><strong>Juan Helen Zhou</strong>, National University of Singapore</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
           <li><time class="t" datetime="2026-12-08T15:30">15:30</time>
-            <button class="session" type="button" data-id="panel" aria-haspopup="dialog"><span class="kind">Panel discussion</span><span class="st">Unsimulated world models</span><span class="sp">Four panelists with the three invited speakers</span><span class="more">See panelists</span></button></li>
+            <button class="session" type="button" data-id="panel" aria-haspopup="dialog"><span class="kind">Panel discussion</span><span class="st">Unsimulated world models</span><span class="sp">Three panelists with the three invited speakers</span><span class="more">See panelists</span></button></li>
         </ol>
         <time class="t-end" datetime="2026-12-08T16:00">16:00</time>
       </div>
@@ -213,9 +218,9 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
     <p class="note">Times are tentative.</p>
 
     <template id="abs-grewe"><p class="d-meta">Invited talk, 14:00–14:30</p><h3>Predictive world models</h3><p><strong>Benjamin Grewe</strong>, ETH Zürich, Switzerland</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
-    <template id="abs-whittington"><p class="d-meta">Invited talk, 14:30–15:00</p><h3>Metacognitive world models</h3><p><strong>James Whittington</strong>, University of Oxford, UK</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
-    <template id="abs-jaques"><p class="d-meta">Invited talk, 15:00–15:30</p><h3>Social world models</h3><p><strong>Natasha Jaques</strong>, University of Washington, USA, and Google DeepMind</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
-    <template id="abs-panel"><p class="d-meta">Panel discussion, 15:30–16:00</p><h3>Unsimulated world models</h3><div class="d-abs"><p>An open discussion on what current world models are missing, joined by the three invited speakers.</p></div><ul class="d-list"><li><strong>Demian Battaglia</strong>, CNRS and University of Strasbourg. Structure and dynamics</li><li><strong>Jeehyun Kwag</strong>, Seoul National University. Spatial navigation and memory</li><li><strong>Mattia Rigotti</strong>, IBM Research Zurich. Reasoning and LLMs</li><li><strong>Juan Helen Zhou</strong>, National University of Singapore. Brain foundation models</li></ul></template>
+    <template id="abs-demartino"><p class="d-meta">Invited talk, 14:30–15:00</p><h3>Metacognitive world models</h3><p><strong>Benedetto De Martino</strong>, University College London, UK</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
+    <template id="abs-zhou"><p class="d-meta">Invited talk, 15:00–15:30</p><h3>Brain foundation models</h3><p><strong>Juan Helen Zhou</strong>, National University of Singapore</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
+    <template id="abs-panel"><p class="d-meta">Panel discussion, 15:30–16:00</p><h3>Unsimulated world models</h3><div class="d-abs"><p>An open discussion on what current world models are missing, joined by the three invited speakers.</p></div><ul class="d-list"><li><strong>Demian Battaglia</strong>, CNRS and University of Strasbourg. Structure and dynamics</li><li><strong>Jeehyun Kwag</strong>, Seoul National University. Spatial navigation and memory</li><li><strong>Mattia Rigotti</strong>, IBM Research Zurich. Reasoning and LLMs</li></ul></template>
   </section>
 
   <section id="speakers">
@@ -226,14 +231,14 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
         <p class="nm">Benjamin Grewe</p><p class="af">ETH Zürich, Switzerland</p>
         <p class="tp">Predictive world models<span>Talk at 14:00</span></p>
         <button class="linkbtn" type="button" data-id="grewe" aria-haspopup="dialog">Read abstract</button></li>
-      <li><div class="portrait">JW<img onerror="this.remove()" src="img/whittington.jpg" alt="Portrait of James Whittington" width="110" height="138" loading="lazy"></div>
-        <p class="nm">James Whittington</p><p class="af">University of Oxford, UK</p>
+      <li><div class="portrait">BD<img onerror="this.remove()" src="img/demartino.jpg" alt="Portrait of Benedetto De Martino" width="110" height="138" loading="lazy"></div>
+        <p class="nm">Benedetto De Martino</p><p class="af">University College London, UK</p>
         <p class="tp">Metacognitive world models<span>Talk at 14:30</span></p>
-        <button class="linkbtn" type="button" data-id="whittington" aria-haspopup="dialog">Read abstract</button></li>
-      <li><div class="portrait">NJ<img onerror="this.remove()" src="img/jaques.jpg" alt="Portrait of Natasha Jaques" width="110" height="138" loading="lazy"></div>
-        <p class="nm">Natasha Jaques</p><p class="af">University of Washington, USA, and Google DeepMind</p>
-        <p class="tp">Social world models<span>Talk at 15:00</span></p>
-        <button class="linkbtn" type="button" data-id="jaques" aria-haspopup="dialog">Read abstract</button></li>
+        <button class="linkbtn" type="button" data-id="demartino" aria-haspopup="dialog">Read abstract</button></li>
+      <li><div class="portrait">JZ<img onerror="this.remove()" src="img/zhou.jpg" alt="Portrait of Juan Helen Zhou" width="110" height="138" loading="lazy"></div>
+        <p class="nm">Juan Helen Zhou</p><p class="af">National University of Singapore</p>
+        <p class="tp">Brain foundation models<span>Talk at 15:00</span></p>
+        <button class="linkbtn" type="button" data-id="zhou" aria-haspopup="dialog">Read abstract</button></li>
     </ul>
     <h3 class="label">Panelists</h3>
     <p class="note">Panel at 15:30, joined by the three invited speakers.</p>
@@ -241,7 +246,6 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
       <li><div class="portrait sm">DB<img onerror="this.remove()" src="img/battaglia.jpg" alt="Portrait of Demian Battaglia" width="72" height="90" loading="lazy"></div><p class="nm">Demian Battaglia</p><p class="af">CNRS and University of Strasbourg</p><p class="pv">Structure and dynamics</p></li>
       <li><div class="portrait sm">JK<img onerror="this.remove()" src="img/kwag.jpg" alt="Portrait of Jeehyun Kwag" width="72" height="90" loading="lazy"></div><p class="nm">Jeehyun Kwag</p><p class="af">Seoul National University</p><p class="pv">Spatial navigation and memory</p></li>
       <li><div class="portrait sm">MR<img onerror="this.remove()" src="img/rigotti.jpg" alt="Portrait of Mattia Rigotti" width="72" height="90" loading="lazy"></div><p class="nm">Mattia Rigotti</p><p class="af">IBM Research Zurich</p><p class="pv">Reasoning and LLMs</p></li>
-      <li><div class="portrait sm">JZ<img onerror="this.remove()" src="img/zhou.jpg" alt="Portrait of Juan Helen Zhou" width="72" height="90" loading="lazy"></div><p class="nm">Juan Helen Zhou</p><p class="af">National University of Singapore</p><p class="pv">Brain foundation models</p></li>
     </ul>
   </section>
 
@@ -256,6 +260,10 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
       <li><div class="portrait sm">DB<img onerror="this.remove()" src="img/battaglia.jpg" alt="Portrait of Demian Battaglia" width="72" height="90" loading="lazy"></div><div><p class="nm">Demian Battaglia</p><p class="af">CNRS and University of Strasbourg, France</p></div></li>
     </ul>
     <p class="note" style="margin-top:22px">Coordinated by Niklas Koeppe, Jiewon Kang and Myounghoon Ha (KAIST).</p>
+  </section>
+  <section id="sponsor" class="sponsor" aria-label="Sponsor">
+    <img src="img/iitp-logo.png" width="152" height="80" alt="IITP, Institute of Information &amp; Communications Technology Planning &amp; Evaluation" onerror="this.remove()">
+    <p>This event is supported by Institute of Information &amp; communications Technology Planning &amp; Evaluation(IITP) grant funded by the Korea government(MSIT) (No. RS-2026-25522672, Development of Unified Reasoning Technology Mimicking Human Cognition for Hierarchical Understanding and Unbounded Problem Solving).</p>
   </section>
 </main>
 
