@@ -109,10 +109,11 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
 .portrait.sm{width:72px;margin:0;font-size:18px}
 .orgs .nm{font-size:17px}
 .rl{margin-top:4px!important;font-size:15px;font-style:italic}
-.pnl{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
-.pnl li{border-top:1px solid var(--border);padding:16px 0 20px}
-.pv{margin-top:8px!important;font-size:15px;font-style:italic}
-.bio{margin-top:6px!important;font-size:15.5px;line-height:1.55;color:var(--text)}
+.pnl{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 24px}
+.pnl .portrait.sm{margin:0 0 10px}
+.pnl .nm{font-size:16px}
+.pnl .af{font-size:14px}
+.pv{margin-top:4px!important;font-size:14px;font-style:italic}
 
 .site-footer{margin-top:50px;background:#35383a;color:#d5d7d7;font-size:13px}
 .foot{max-width:var(--width);margin:auto;padding:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 16px}
@@ -129,7 +130,7 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
   .spk{grid-template-columns:1fr;gap:26px}
   .spk li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:0 16px;align-items:start}
   .spk .portrait{width:72px;grid-row:span 5;margin:0;font-size:20px}
-  .pnl{grid-template-columns:1fr}
+  .pnl{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px}
   .orgs{grid-template-columns:1fr}
 }
 @media (max-width:650px){
@@ -235,16 +236,12 @@ dialog#abs::backdrop{background:rgba(20,22,24,.5)}
         <button class="linkbtn" type="button" data-id="jaques" aria-haspopup="dialog">Read abstract</button></li>
     </ul>
     <h3 class="label">Panelists</h3>
-    <p class="note">The panel at 15:30 brings together four perspectives, joined by the three invited speakers.</p>
+    <p class="note">Panel at 15:30, joined by the three invited speakers.</p>
     <ul class="pnl">
-      <li><p class="nm">Demian Battaglia</p><p class="af">CNRS and University of Strasbourg, France</p><p class="pv">Structure and dynamics</p>
-        <p class="bio">Works at the crossroads of neuroscience, physics and information sciences, studying brain network dynamics from micro-circuits up to the whole brain.</p></li>
-      <li><p class="nm">Jeehyun Kwag</p><p class="af">Seoul National University, Korea</p><p class="pv">Spatial navigation and memory</p>
-        <p class="bio">Systems and computational neuroscientist studying how neural circuits construct predictive world models through ensemble dynamics, memory engrams and egocentric spatial representations.</p></li>
-      <li><p class="nm">Mattia Rigotti</p><p class="af">IBM Research Zurich, Switzerland</p><p class="pv">Reasoning and LLMs</p>
-        <p class="bio">Works at the interface of computational neuroscience and machine learning; known for work on mixed selectivity and high-dimensional neural representations underlying flexible cognition.</p></li>
-      <li><p class="nm">Juan Helen Zhou</p><p class="af">National University of Singapore</p><p class="pv">Brain foundation models</p>
-        <p class="bio">Combines multimodal neuroimaging with deep generative models and large-scale brain foundation models, including Brain-JEPA and BrainHarmonix.</p></li>
+      <li><div class="portrait sm">DB<img onerror="this.remove()" src="img/battaglia.jpg" alt="Portrait of Demian Battaglia" width="72" height="90" loading="lazy"></div><p class="nm">Demian Battaglia</p><p class="af">CNRS and University of Strasbourg</p><p class="pv">Structure and dynamics</p></li>
+      <li><div class="portrait sm">JK<img onerror="this.remove()" src="img/kwag.jpg" alt="Portrait of Jeehyun Kwag" width="72" height="90" loading="lazy"></div><p class="nm">Jeehyun Kwag</p><p class="af">Seoul National University</p><p class="pv">Spatial navigation and memory</p></li>
+      <li><div class="portrait sm">MR<img onerror="this.remove()" src="img/rigotti.jpg" alt="Portrait of Mattia Rigotti" width="72" height="90" loading="lazy"></div><p class="nm">Mattia Rigotti</p><p class="af">IBM Research Zurich</p><p class="pv">Reasoning and LLMs</p></li>
+      <li><div class="portrait sm">JZ<img onerror="this.remove()" src="img/zhou.jpg" alt="Portrait of Juan Helen Zhou" width="72" height="90" loading="lazy"></div><p class="nm">Juan Helen Zhou</p><p class="af">National University of Singapore</p><p class="pv">Brain foundation models</p></li>
     </ul>
   </section>
 
