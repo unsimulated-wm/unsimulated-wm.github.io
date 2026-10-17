@@ -73,13 +73,14 @@ h3{margin:0;font-size:17px;font-weight:700;line-height:1.4}
 .session .st{font-weight:700;font-size:16px}
 .session .sp{font-size:15px}
 .session .tt{font-size:14px;color:var(--muted);font-style:italic}
+.session .tt.known{color:var(--text);font-style:normal;margin-top:5px}
 .session .more{margin-top:auto;padding-top:10px;font-size:13px;color:var(--text);text-decoration:underline;text-underline-offset:.2em}
 dialog#abs{width:min(620px,calc(100% - 32px));max-height:calc(100vh - 48px);padding:0;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);box-shadow:0 18px 50px rgba(0,0,0,.25)}
 dialog#abs::backdrop{background:rgba(20,22,24,.5)}
 .d-inner{padding:26px 28px 24px;position:relative}
 .d-close{position:absolute;top:16px;right:18px;border:1px solid var(--border);border-radius:3px;background:none;color:var(--text);font:inherit;font-size:13px;padding:2px 10px;cursor:pointer}
 .d-close:hover{border-color:var(--muted);background:color-mix(in srgb,var(--text) 5%,var(--bg))}
-.d-meta{margin:0 0 10px;color:var(--muted);font-size:15px;display:flex;gap:10px;align-items:center}
+.d-meta{margin:0 0 10px;padding-right:70px;color:var(--muted);font-size:15px}
 .d-body h3{font-size:22px;font-weight:700;margin:0 0 6px;padding-right:70px}
 .d-body p{margin:0 0 6px}
 .d-title{color:var(--muted);font-style:italic}
@@ -208,7 +209,7 @@ html[data-theme="dark"] .sponsor img{border-radius:4px}
           <li><time class="t" datetime="2026-12-08T14:30">14:30</time>
             <button class="session" type="button" data-id="demartino" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Metacognitive world models</span><span class="sp"><strong>Benedetto De Martino</strong>, University College London</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
           <li><time class="t" datetime="2026-12-08T15:00">15:00</time>
-            <button class="session" type="button" data-id="zhou" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Brain foundation models</span><span class="sp"><strong>Juan Helen Zhou</strong>, National University of Singapore</span><span class="tt">Title to be announced</span><span class="more">Read abstract</span></button></li>
+            <button class="session" type="button" data-id="zhou" aria-haspopup="dialog"><span class="kind">Invited talk</span><span class="st">Brain foundation models</span><span class="sp"><strong>Juan Helen Zhou</strong>, National University of Singapore</span><span class="tt known">The Brain as an Unsimulated World Model: From Brain Foundation Models to NeuroWorld</span><span class="more">Read abstract</span></button></li>
           <li><time class="t" datetime="2026-12-08T15:30">15:30</time>
             <button class="session" type="button" data-id="panel" aria-haspopup="dialog"><span class="kind">Panel discussion</span><span class="st">Unsimulated world models</span><span class="sp">Three panelists with the three invited speakers</span><span class="more">See panelists</span></button></li>
         </ol>
@@ -219,7 +220,7 @@ html[data-theme="dark"] .sponsor img{border-radius:4px}
 
     <template id="abs-grewe"><p class="d-meta">Invited talk, 14:00–14:30</p><h3>Predictive world models</h3><p><strong>Benjamin Grewe</strong>, ETH Zürich, Switzerland</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
     <template id="abs-demartino"><p class="d-meta">Invited talk, 14:30–15:00</p><h3>Metacognitive world models</h3><p><strong>Benedetto De Martino</strong>, University College London, UK</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
-    <template id="abs-zhou"><p class="d-meta">Invited talk, 15:00–15:30</p><h3>Brain foundation models</h3><p><strong>Juan Helen Zhou</strong>, National University of Singapore</p><p class="d-title">Title to be announced</p><div class="d-abs"><p>Abstract to be announced.</p></div></template>
+    <template id="abs-zhou"><p class="d-meta">Invited talk, 15:00–15:30. Brain foundation models</p><h3>The Brain as an Unsimulated World Model: From Brain Foundation Models to NeuroWorld</h3><p><strong>Juan Helen Zhou</strong>, National University of Singapore</p><div class="d-abs"><p>The human brain is itself a world model shaped by real experience rather than simulation. Brain recordings therefore offer a rare, direct window into how a biological system represents and predicts the world. In this talk, I will present our work on interpretable multimodal brain foundation models that learn generalizable representations from large-scale structural, functional, and diffusion MRI. These include Brain-JEPA for brain dynamics, Brain Harmony for unifying morphology and function, and BrainFIBRE for white matter microstructure, which together enable brain decoding and behavior prediction. I will then introduce our recent work, NeuroWorld, a latent brain world model that predicts how the human brain responds to naturalistic stimuli. Looking ahead, I will argue that the next generation of world models must bridge simulated and unsimulated worlds, and that representations learned by brain foundation models provide the critical link, grounding simulation in how real brains model reality.</p></div></template>
     <template id="abs-panel"><p class="d-meta">Panel discussion, 15:30–16:00</p><h3>Unsimulated world models</h3><div class="d-abs"><p>An open discussion on what current world models are missing, joined by the three invited speakers.</p></div><ul class="d-list"><li><strong>Demian Battaglia</strong>, CNRS and University of Strasbourg. Structure and dynamics</li><li><strong>Jeehyun Kwag</strong>, Seoul National University. Spatial navigation and memory</li><li><strong>Mattia Rigotti</strong>, IBM Research Zurich. Reasoning and LLMs</li></ul></template>
   </section>
 
